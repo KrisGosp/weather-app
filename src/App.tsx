@@ -7,6 +7,7 @@ import apiClient from "./services/api-client";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("Sofia");
+  const [searchedCity, setSearchedCity] = useState(searchTerm);
 
   const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
@@ -18,13 +19,13 @@ const App = () => {
           "&q=" +
           searchTerm
       )
-      .then((res) => console.log(res.data[0].LocalizedName));
+      .then((res) => setSearchedCity(res.data[0].LocalizedName));
   }, [searchTerm]);
 
   return (
     <>
       <SearchBar onSearch={setSearchTerm} />
-      <Hero />
+      <Hero city={searchedCity} />
       <Box marginTop={28}>
         <WeeklyForecast />
       </Box>

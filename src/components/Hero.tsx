@@ -1,10 +1,14 @@
 import { Box, Heading, Image, Text } from "@chakra-ui/react";
 import { MdOutlineWbSunny } from "react-icons/md";
 
-const Hero = () => {
+type Props = {
+  city: string;
+};
+
+const Hero = ({ city }: Props) => {
   return (
     <Box textAlign="center" marginTop={20}>
-      <Heading as="h1">Sofia</Heading>
+      <Heading as="h1">{city}</Heading>
       <Text opacity="0.6">Friday, 26 January</Text>
       <Heading
         as="h2"
