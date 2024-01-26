@@ -3,17 +3,21 @@ import Hero from "./components/Hero";
 import WeeklyForecast from "./components/WeeklyForecast";
 import SearchBar from "./components/SearchBar";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import apiClient from "./services/api-client";
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("Sofia");
 
-  const api =
-    "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy&q=";
+  const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
   useEffect(() => {
-    axios
-      .get(api + searchTerm)
+    apiClient
+      .get(
+        "/locations/v1/cities/autocomplete?apikey=" +
+          apiKey +
+          "&q=" +
+          searchTerm
+      )
       .then((res) => console.log(res.data[0].LocalizedName));
   }, [searchTerm]);
 
