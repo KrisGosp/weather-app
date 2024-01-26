@@ -5,9 +5,13 @@ import SearchBar from "./components/SearchBar";
 import { useEffect, useState } from "react";
 import apiClient from "./services/api-client";
 
+type cityQuery = {
+  key: string;
+  name: string;
+};
+
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState("Sofia");
-  const [searchedCity, setSearchedCity] = useState(searchTerm);
+  const [cityQuery, setCityQuery] = useState<cityQuery>({} as cityQuery);
 
   const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
@@ -17,15 +21,21 @@ const App = () => {
         "/locations/v1/cities/autocomplete?apikey=" +
           apiKey +
           "&q=" +
-          searchTerm
+          cityQuery.name
       )
-      .then((res) => setSearchedCity(res.data[0].LocalizedName));
-  }, [searchTerm]);
+      .then((res) => {
+        const name = res.data[0].LocalizedName;
+        setCityQuery({ ...cityQuery, name });
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  }, [cityQuery]);
 
   return (
     <>
-      <SearchBar onSearch={setSearchTerm} />
-      <Hero city={searchedCity} />
+      <SearchBar onSearch={(name) => setCityQuery({ ...cityQuery, name })} />
+      <Hero city={cityQuery.name} />
       <Box marginTop={28}>
         <WeeklyForecast />
       </Box>
