@@ -16,12 +16,12 @@ const App = () => {
     name: "Sofia",
   });
 
-  useLocation(cityQuery);
+  const { data } = useLocation(cityQuery);
 
   return (
     <>
       <SearchBar onSearch={(name) => setCityQuery({ ...cityQuery, name })} />
-      <Hero city={cityQuery.name} />
+      <Hero city={data.name} />
       <Box marginTop={28}>
         <WeeklyForecast />
       </Box>
