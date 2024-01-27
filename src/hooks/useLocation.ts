@@ -3,7 +3,10 @@ import apiClient from "../services/api-client";
 import { cityQuery } from "../App";
 
 const useLocation = (city: cityQuery) => {
-  const [data, setData] = useState<cityQuery>({} as cityQuery);
+  const [location, setLocation] = useState<cityQuery>({
+    key: "51097",
+    name: "Sofia",
+  });
   const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
   useEffect(() => {
@@ -14,7 +17,7 @@ const useLocation = (city: cityQuery) => {
       .then((res) => {
         const name = res.data[0].LocalizedName;
         const key = res.data[0].Key;
-        setData({ name, key });
+        setLocation({ name, key });
         console.log(name, key);
       })
       .catch((err) => {
@@ -22,7 +25,7 @@ const useLocation = (city: cityQuery) => {
       });
   }, [city.name]);
 
-  return { data };
+  return { location };
 };
 
 export default useLocation;
