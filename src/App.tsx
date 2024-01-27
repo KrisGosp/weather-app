@@ -2,35 +2,21 @@ import { Box } from "@chakra-ui/react";
 import Hero from "./components/Hero";
 import WeeklyForecast from "./components/WeeklyForecast";
 import SearchBar from "./components/SearchBar";
-import { useEffect, useState } from "react";
-import apiClient from "./services/api-client";
+import { useState } from "react";
+import useLocation from "./hooks/useLocation";
 
-type cityQuery = {
+export type cityQuery = {
   key: string;
   name: string;
 };
 
 const App = () => {
-  const [cityQuery, setCityQuery] = useState<cityQuery>({} as cityQuery);
+  const [cityQuery, setCityQuery] = useState<cityQuery>({
+    key: "51097",
+    name: "Sofia",
+  });
 
-  const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
-
-  useEffect(() => {
-    apiClient
-      .get(
-        "/locations/v1/cities/autocomplete?apikey=" +
-          apiKey +
-          "&q=" +
-          cityQuery.name
-      )
-      .then((res) => {
-        const name = res.data[0].LocalizedName;
-        setCityQuery({ ...cityQuery, name });
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
-  }, [cityQuery]);
+  useLocation(cityQuery);
 
   return (
     <>
