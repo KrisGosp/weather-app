@@ -1,17 +1,22 @@
 import { HStack, Heading, List, Icon } from "@chakra-ui/react";
 import { FaCalendarAlt } from "react-icons/fa";
 import ForecastDay from "./ForecastDay";
+import { Forecast } from "../hooks/useForecast";
 
-const WeeklyForecast = () => {
-  const daysOfWeek = [
-    "Saturday",
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-  ];
+type Props = {
+  forecasts: Forecast[];
+};
+
+const WeeklyForecast = ({ forecasts }: Props) => {
+  // const daysOfWeek = [
+  //   "Saturday",
+  //   "Sunday",
+  //   "Monday",
+  //   "Tuesday",
+  //   "Wednesday",
+  //   "Thursday",
+  //   "Friday",
+  // ];
   return (
     <>
       <HStack marginLeft={5}>
@@ -21,8 +26,8 @@ const WeeklyForecast = () => {
         </Heading>
       </HStack>
       <List>
-        {daysOfWeek.map((day) => (
-          <ForecastDay key={day} day={day} />
+        {forecasts.map((day) => (
+          <ForecastDay key={day.EpochDate} day={day} />
         ))}
       </List>
     </>

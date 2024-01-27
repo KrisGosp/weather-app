@@ -24,7 +24,7 @@ const App = () => {
       <SearchBar onSearch={(name) => setCityQuery({ ...cityQuery, name })} />
       <Hero city={location.name} />
       <Box marginTop={28}>
-        <WeeklyForecast />
+        <WeeklyForecast forecasts={data} />
       </Box>
     </>
   );
