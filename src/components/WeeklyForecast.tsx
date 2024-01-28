@@ -19,9 +19,13 @@ const WeeklyForecast = ({ forecasts }: Props) => {
   // ];
   return (
     <>
-      <HStack marginLeft={5}>
+      <HStack
+        marginLeft={{ base: 5, lg: "1px" }}
+        justifyContent={{ base: "inherit", lg: "center" }}
+        marginBottom={20}
+      >
         <Icon as={FaCalendarAlt} boxSize="40px" />
-        <Heading as="h2" fontSize={60} paddingLeft={4}>
+        <Heading as="h2" fontSize={60} fontWeight="400">
           This week
         </Heading>
       </HStack>

@@ -1,7 +1,6 @@
 import { Box, Heading, Image, Text } from "@chakra-ui/react";
-import { MdOutlineWbSunny } from "react-icons/md";
 import { CurrentConditions } from "../hooks/useCurrentConditions";
-
+import one from "../assets/1-s.png";
 type Props = {
   city: string;
   currentConditions: CurrentConditions;
@@ -10,21 +9,32 @@ type Props = {
 const Hero = ({ city, currentConditions }: Props) => {
   return (
     <Box textAlign="center" marginTop={20}>
-      <Heading as="h1">{city}</Heading>
-      <Text opacity="0.6">{currentConditions.LocalObservationDateTime}</Text>
+      <Heading
+        as="h1"
+        fontSize={{ base: 70, md: "110px", lg: "130px", xl: "160px" }}
+      >
+        {city}
+      </Heading>
+      <Text
+        opacity="0.6"
+        fontSize={{ base: 17, md: "20px", lg: "25px", xl: "90px" }}
+      >
+        {currentConditions.LocalObservationDateTime}
+      </Text>
       <Heading
         as="h2"
-        fontSize={100}
-        paddingLeft={5}
+        fontSize={{ base: 100, md: 160, lg: 220 }}
         marginTop={5}
         fontWeight="300"
       >
         {currentConditions.Temperature.Metric.Value}°
       </Heading>
-      <Box display="flex" justifyContent="space-around">
-        <Image as={MdOutlineWbSunny} boxSize="100px" />
+      <Box marginY={10} display="flex" justifyContent="space-around">
+        <Image src={one} width={{ base: 500, md: 700, lg: 800 }} />
       </Box>
-      <Text>{currentConditions.WeatherText}</Text>
+      <Text fontSize={{ base: "50px", lg: "80px" }} opacity="0.8">
+        {currentConditions.WeatherText}
+      </Text>
     </Box>
   );
 };
