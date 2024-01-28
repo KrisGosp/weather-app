@@ -39,7 +39,7 @@ const useCurrentConditions = ({ key }: cityQuery) => {
       .then((res) => {
         const result = res.data[0];
         setCurrentConditions(result);
-        console.log(result);
+        // console.log(result);
       })
       .catch((err) => {
         console.log(err);

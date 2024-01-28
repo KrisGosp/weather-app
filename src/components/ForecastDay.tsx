@@ -1,12 +1,16 @@
-import { HStack, ListItem, Text } from "@chakra-ui/react";
-import { WiCloudyGusts } from "react-icons/wi";
+import { HStack, Image, ListItem, Text } from "@chakra-ui/react";
 import { Forecast } from "../hooks/useForecast";
+import IMAGES from "../assets";
 
 type Props = {
   day: Forecast;
 };
 
 const ForecastDay = ({ day }: Props) => {
+  const FtoC = (fahr: number) => {
+    return Math.round(((fahr - 32) * 5) / 9);
+  };
+
   return (
     <ListItem
       key={day.EpochDate}
@@ -19,16 +23,16 @@ const ForecastDay = ({ day }: Props) => {
           Monday
         </Text>
         <HStack>
-          <WiCloudyGusts />
+          <Image src={IMAGES[day.Day.Icon - 1]} />
           <Text fontSize={{ base: 20, md: 35 }} opacity="0.8">
-            Cloudy
+            {day.Day.IconPhrase}
           </Text>
         </HStack>
         <HStack fontSize={{ base: 38, md: 60 }} spacing={1}>
-          <Text>{day.Temperature.Minimum.Value}</Text>
+          <Text>{FtoC(day.Temperature.Minimum.Value)}</Text>
 
           <Text>{"-"}</Text>
-          <Text>{day.Temperature.Maximum.Value}</Text>
+          <Text>{FtoC(day.Temperature.Maximum.Value)}</Text>
         </HStack>
       </HStack>
     </ListItem>
