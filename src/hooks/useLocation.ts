@@ -18,7 +18,7 @@ const useLocation = (city: cityQuery) => {
         const name = res.data[0].LocalizedName;
         const key = res.data[0].Key;
         setLocation({ name, key });
-        console.log(name, key);
+        console.log("LocalizedName: " + name, key);
       })
       .catch((err) => {
         console.log(err);

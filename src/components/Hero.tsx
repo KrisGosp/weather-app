@@ -1,15 +1,17 @@
 import { Box, Heading, Image, Text } from "@chakra-ui/react";
 import { MdOutlineWbSunny } from "react-icons/md";
+import { CurrentConditions } from "../hooks/useCurrentConditions";
 
 type Props = {
   city: string;
+  currentConditions: CurrentConditions;
 };
 
-const Hero = ({ city }: Props) => {
+const Hero = ({ city, currentConditions }: Props) => {
   return (
     <Box textAlign="center" marginTop={20}>
       <Heading as="h1">{city}</Heading>
-      <Text opacity="0.6">Friday, 26 January</Text>
+      <Text opacity="0.6">{currentConditions.LocalObservationDateTime}</Text>
       <Heading
         as="h2"
         fontSize={100}
@@ -17,11 +19,12 @@ const Hero = ({ city }: Props) => {
         marginTop={5}
         fontWeight="300"
       >
-        24°
+        {currentConditions.Temperature.Metric.Value}°
       </Heading>
       <Box display="flex" justifyContent="space-around">
         <Image as={MdOutlineWbSunny} boxSize="100px" />
       </Box>
+      <Text>{currentConditions.WeatherText}</Text>
     </Box>
   );
 };

@@ -28,7 +28,7 @@ const useForecast = ({ key }: cityQuery) => {
       .then((res) => {
         const result = res.data.DailyForecasts;
         setData(result);
-        console.log(result);
+        // console.log("Daily: " + result);
       })
       .catch((err) => {
         console.log(err);
