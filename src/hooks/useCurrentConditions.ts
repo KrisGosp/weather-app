@@ -5,7 +5,7 @@ import apiClient from "../services/api-client";
 
 export type CurrentConditions = {
   IsDayTime?: boolean;
-  LocalObservationDateTime?: string;
+  LocalObservationDateTime: string;
   Temperature: {
     Metric: {
       Value: number;
@@ -22,6 +22,7 @@ export type CurrentConditions = {
 const useCurrentConditions = ({ key }: cityQuery) => {
   const [currentConditions, setCurrentConditions] = useState<CurrentConditions>(
     {
+      LocalObservationDateTime: "January 26th",
       Temperature: {
         Metric: {
           Value: 2,
