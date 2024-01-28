@@ -13,6 +13,11 @@ export type Forecast = {
     };
   };
 };
+// {
+//   Day: {
+//     Icon: number;
+//   };
+// }
 
 // type FetchResponse = {
 //   data: Forecast[];
@@ -26,9 +31,9 @@ const useForecast = ({ key }: cityQuery) => {
     apiClient
       .get(`/forecasts/v1/daily/5day/${key}?apikey=` + apiKey)
       .then((res) => {
+        console.log("Daily: " + res.data);
         const result = res.data.DailyForecasts;
         setData(result);
-        // console.log("Daily: " + result);
       })
       .catch((err) => {
         console.log(err);

@@ -1,6 +1,8 @@
 import { Box, Heading, Image, Text } from "@chakra-ui/react";
 import { CurrentConditions } from "../hooks/useCurrentConditions";
-import one from "../assets/1-s.png";
+// import one from "../assets/1-s.png";
+import IMAGES from "../assets";
+
 type Props = {
   city: string;
   currentConditions: CurrentConditions;
@@ -30,7 +32,10 @@ const Hero = ({ city, currentConditions }: Props) => {
         {currentConditions.Temperature.Metric.Value}°
       </Heading>
       <Box marginY={10} display="flex" justifyContent="space-around">
-        <Image src={one} width={{ base: 500, md: 700, lg: 800 }} />
+        <Image
+          src={IMAGES[currentConditions.WeatherIcon - 1]}
+          width={{ base: 500, md: 700, lg: 800 }}
+        />
       </Box>
       <Text fontSize={{ base: "50px", lg: "80px" }} opacity="0.8">
         {currentConditions.WeatherText}

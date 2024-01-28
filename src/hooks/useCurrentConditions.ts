@@ -11,7 +11,7 @@ export type CurrentConditions = {
       Value: number;
     };
   };
-  WeatherIcon?: number;
+  WeatherIcon: number;
   WeatherText: string;
 };
 
@@ -27,6 +27,7 @@ const useCurrentConditions = ({ key }: cityQuery) => {
           Value: 2,
         },
       },
+      WeatherIcon: 1,
       WeatherText: "Cloudy",
     }
   );
@@ -44,7 +45,7 @@ const useCurrentConditions = ({ key }: cityQuery) => {
         console.log(err);
       });
   }, [key]);
-  console.log("aaa:  " + currentConditions.Temperature.Metric.Value);
+  // console.log("aaa:  " + currentConditions.Temperature.Metric.Value);
   return { currentConditions };
 };
 
