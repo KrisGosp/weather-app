@@ -16,8 +16,13 @@ const SearchBar = ({ onSearch }: Props) => {
         if (ref.current) onSearch(ref.current.value);
       }}
     >
-      <InputGroup>
-        <Input ref={ref} size="lg" />
+      <InputGroup width="70%" marginX="auto" marginY={10}>
+        <Input
+          ref={ref}
+          size="lg"
+          borderRadius="20px"
+          border="1px solid #fff"
+        />
         <InputLeftElement as={BiSearchAlt} margin={1} />
       </InputGroup>
     </form>
