@@ -2,24 +2,29 @@ import { Box, Heading, Image, Text } from "@chakra-ui/react";
 import { CurrentConditions } from "../hooks/useCurrentConditions";
 // import one from "../assets/1-s.png";
 import IMAGES from "../assets";
+import useLocation from "../hooks/useLocation";
+import { cityQuery } from "../App";
 
 type Props = {
-  city: string;
+  cityQuery: cityQuery;
   currentConditions: CurrentConditions;
 };
 
-const Hero = ({ city, currentConditions }: Props) => {
+const Hero = ({ cityQuery, currentConditions }: Props) => {
+  const { location } = useLocation(cityQuery);
+
   const nowTime = new Date(currentConditions.LocalObservationDateTime);
   const cutDate = nowTime
     .toString()
     .slice(0, nowTime.toString().indexOf(" 2024"));
+
   return (
     <Box textAlign="center" marginTop={20}>
       <Heading
         as="h1"
         fontSize={{ base: 70, md: "110px", lg: "130px", xl: "160px" }}
       >
-        {city}
+        {location.name}
       </Heading>
       <Text
         opacity="0.6"

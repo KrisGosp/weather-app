@@ -3,6 +3,7 @@ import { cityQuery } from "../App";
 import apiClient from "../services/api-client";
 
 export type Forecast = {
+  Date: Date;
   EpochDate: number;
   Temperature: {
     Maximum: {

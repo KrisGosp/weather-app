@@ -6,10 +6,32 @@ type Props = {
   day: Forecast;
 };
 
+// const daysOfWeek = [
+//   {0: "Monday"},
+//   {1: "Tuesday"},
+//   {2: "Wednesday"},
+//   {3: "Thursday"},
+//   {4: "Friday"},
+//   {5: "Saturday"},
+//   {6: "Sunday"},
+// ];
+
+const daysOfWeek = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
 const ForecastDay = ({ day }: Props) => {
   const FtoC = (fahr: number) => {
     return Math.round(((fahr - 32) * 5) / 9);
   };
+
+  // if (day.Date) console.log(day.Date.getDay());
 
   return (
     <ListItem
@@ -20,7 +42,7 @@ const ForecastDay = ({ day }: Props) => {
     >
       <HStack justifyContent="space-between" margin={{ base: 2, md: 10 }}>
         <Text whiteSpace="nowrap" fontSize={{ base: 25, md: 45 }} opacity="0.9">
-          Monday
+          {daysOfWeek[0]}
         </Text>
         <HStack>
           <Image src={IMAGES[day.Day.Icon - 1]} />
