@@ -3,8 +3,6 @@ import Hero from "./components/Hero";
 import WeeklyForecast from "./components/WeeklyForecast";
 import SearchBar from "./components/SearchBar";
 import { useState } from "react";
-import useLocation from "./hooks/useLocation";
-import useCurrentConditions from "./hooks/useCurrentConditions";
 
 export type cityQuery = {
   key: string;
@@ -17,12 +15,10 @@ const App = () => {
     name: "Sofia",
   });
 
-  const { location } = useLocation(cityQuery);
-  const { currentConditions } = useCurrentConditions(location);
   return (
     <>
       <SearchBar onSearch={(name) => setCityQuery({ ...cityQuery, name })} />
-      <Hero cityQuery={cityQuery} currentConditions={currentConditions} />
+      <Hero cityQuery={cityQuery} />
       <Box marginTop={28}>
         <WeeklyForecast cityQuery={cityQuery} />
       </Box>

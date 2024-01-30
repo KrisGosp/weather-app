@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { cityQuery } from "../App";
 import apiClient from "../services/api-client";
-// import { Forecast } from "./useForecast";
 
 export type CurrentConditions = {
   IsDayTime?: boolean;
@@ -15,22 +14,9 @@ export type CurrentConditions = {
   WeatherText: string;
 };
 
-// type FetchResponse = {
-//   data: Forecast[];
-// };
-
 const useCurrentConditions = ({ key }: cityQuery) => {
   const [currentConditions, setCurrentConditions] = useState<CurrentConditions>(
-    {
-      LocalObservationDateTime: "January 26th",
-      Temperature: {
-        Metric: {
-          Value: 2,
-        },
-      },
-      WeatherIcon: 1,
-      WeatherText: "Cloudy",
-    }
+    {} as CurrentConditions
   );
   const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
@@ -46,7 +32,6 @@ const useCurrentConditions = ({ key }: cityQuery) => {
         console.log(err);
       });
   }, [key]);
-  // console.log("aaa:  " + currentConditions.Temperature.Metric.Value);
   return { currentConditions };
 };
 

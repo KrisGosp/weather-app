@@ -1,5 +1,5 @@
 import { Box, Heading, Image, Text } from "@chakra-ui/react";
-import { CurrentConditions } from "../hooks/useCurrentConditions";
+import useCurrentConditions from "../hooks/useCurrentConditions";
 // import one from "../assets/1-s.png";
 import IMAGES from "../assets";
 import useLocation from "../hooks/useLocation";
@@ -7,12 +7,11 @@ import { cityQuery } from "../App";
 
 type Props = {
   cityQuery: cityQuery;
-  currentConditions: CurrentConditions;
 };
 
-const Hero = ({ cityQuery, currentConditions }: Props) => {
+const Hero = ({ cityQuery }: Props) => {
   const { location } = useLocation(cityQuery);
-
+  const { currentConditions } = useCurrentConditions(location);
   const nowTime = new Date(currentConditions.LocalObservationDateTime);
   const cutDate = nowTime
     .toString()
@@ -38,7 +37,9 @@ const Hero = ({ cityQuery, currentConditions }: Props) => {
         marginTop={5}
         fontWeight="300"
       >
-        {currentConditions.Temperature.Metric.Value}°
+        {currentConditions.Temperature &&
+          currentConditions.Temperature.Metric.Value}
+        °
       </Heading>
       <Box marginY={10} display="flex" justifyContent="space-around">
         <Image
