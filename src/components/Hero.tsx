@@ -9,8 +9,10 @@ type Props = {
 };
 
 const Hero = ({ city, currentConditions }: Props) => {
-  const now = new Date(currentConditions.LocalObservationDateTime);
-  console.log(now);
+  const nowTime = new Date(currentConditions.LocalObservationDateTime);
+  const cutDate = nowTime
+    .toString()
+    .slice(0, nowTime.toString().indexOf(" 2024"));
   return (
     <Box textAlign="center" marginTop={20}>
       <Heading
@@ -23,7 +25,7 @@ const Hero = ({ city, currentConditions }: Props) => {
         opacity="0.6"
         fontSize={{ base: 17, md: "20px", lg: "25px", xl: "90px" }}
       >
-        {now.toString()}
+        {cutDate}
       </Text>
       <Heading
         as="h2"
