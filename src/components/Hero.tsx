@@ -3,14 +3,16 @@ import useCurrentConditions from "../hooks/useCurrentConditions";
 // import one from "../assets/1-s.png";
 import IMAGES from "../assets";
 import useLocation from "../hooks/useLocation";
-import { cityQuery } from "../App";
+import { CityQuery } from "../App";
 
 type Props = {
-  cityQuery: cityQuery;
+  cityQuery: CityQuery;
+  updateQuery: (cityQuery: CityQuery) => void;
 };
 
-const Hero = ({ cityQuery }: Props) => {
+const Hero = ({ cityQuery, updateQuery }: Props) => {
   const { location } = useLocation(cityQuery);
+  updateQuery(location);
   const { currentConditions } = useCurrentConditions(location);
   const nowTime = new Date(currentConditions.LocalObservationDateTime);
   const cutDate = nowTime

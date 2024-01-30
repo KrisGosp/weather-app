@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { cityQuery } from "../App";
+import { CityQuery } from "../App";
 import apiClient from "../services/api-client";
 
 export type CurrentConditions = {
@@ -14,7 +14,7 @@ export type CurrentConditions = {
   WeatherText: string;
 };
 
-const useCurrentConditions = ({ key }: cityQuery) => {
+const useCurrentConditions = ({ key }: CityQuery) => {
   const [currentConditions, setCurrentConditions] = useState<CurrentConditions>(
     {} as CurrentConditions
   );

@@ -4,13 +4,13 @@ import WeeklyForecast from "./components/WeeklyForecast";
 import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 
-export type cityQuery = {
+export type CityQuery = {
   key: string;
   name: string;
 };
 
 const App = () => {
-  const [cityQuery, setCityQuery] = useState<cityQuery>({
+  const [cityQuery, setCityQuery] = useState<CityQuery>({
     key: "51097",
     name: "Sofia",
   });
@@ -18,7 +18,10 @@ const App = () => {
   return (
     <>
       <SearchBar onSearch={(name) => setCityQuery({ ...cityQuery, name })} />
-      <Hero cityQuery={cityQuery} />
+      <Hero
+        cityQuery={cityQuery}
+        updateQuery={(newQuery) => setCityQuery(newQuery)}
+      />
       <Box marginTop={28}>
         <WeeklyForecast cityQuery={cityQuery} />
       </Box>
