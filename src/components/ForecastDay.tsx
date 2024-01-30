@@ -20,9 +20,7 @@ const ForecastDay = ({ day }: Props) => {
   const FtoC = (fahr: number) => {
     return Math.round(((fahr - 32) * 5) / 9);
   };
-
-  // if (day.Date) console.log(day.Date.getDay());
-
+  const date = new Date(day.Date);
   return (
     <ListItem
       key={day.EpochDate}
@@ -32,7 +30,7 @@ const ForecastDay = ({ day }: Props) => {
     >
       <HStack justifyContent="space-between" margin={{ base: 2, md: 10 }}>
         <Text whiteSpace="nowrap" fontSize={{ base: 25, md: 45 }} opacity="0.9">
-          {daysOfWeek[0]}
+          {daysOfWeek[date.getDay()]}
         </Text>
         <HStack>
           <Image src={IMAGES[day.Day.Icon - 1]} />
