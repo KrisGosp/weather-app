@@ -4,6 +4,7 @@ import useCurrentConditions from "../hooks/useCurrentConditions";
 import IMAGES from "../assets";
 import useLocation from "../hooks/useLocation";
 import { CityQuery } from "../App";
+import HeroSkeleton from "./HeroSkeleton";
 
 type Props = {
   cityQuery: CityQuery;
@@ -11,13 +12,14 @@ type Props = {
 
 const Hero = ({ cityQuery }: Props) => {
   const { location } = useLocation(cityQuery);
-  const { currentConditions } = useCurrentConditions(location);
+  const { currentConditions, isLoading } = useCurrentConditions(location);
 
   const nowTime = new Date(currentConditions.LocalObservationDateTime);
   const cutDate = nowTime
     .toString()
     .slice(0, nowTime.toString().indexOf(" 2024"));
 
+  if (isLoading) return <HeroSkeleton />;
   return (
     <Box textAlign="center" marginTop={20}>
       <Heading

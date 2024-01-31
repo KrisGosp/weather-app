@@ -29,19 +29,22 @@ const useForecast = ({ key }: CityQuery) => {
 
   useEffect(() => {
     setIsLoading(true);
-    apiClient
-      .get(
-        `/forecasts/v1/daily/5day/${key}?apikey=` + import.meta.env.VITE_API_KEY
-      )
-      .then((res) => {
-        console.log(res.data.DailyForecasts[0]);
-        const result = res.data.DailyForecasts;
-        setData(result);
-      })
-      .catch((err) => {
-        setError(err.message);
-      })
-      .finally(() => setIsLoading(false));
+    setTimeout(() => {
+      apiClient
+        .get(
+          `/forecasts/v1/daily/5day/${key}?apikey=` +
+            import.meta.env.VITE_API_KEY
+        )
+        .then((res) => {
+          console.log(res.data.DailyForecasts[0]);
+          const result = res.data.DailyForecasts;
+          setData(result);
+        })
+        .catch((err) => {
+          setError(err.message);
+        })
+        .finally(() => setIsLoading(false));
+    }, 1000);
   }, [key]);
 
   return { data, error, isLoading };

@@ -32,7 +32,7 @@ const ForecastDay = ({ day }: Props) => {
         <Text whiteSpace="nowrap" fontSize={{ base: 25, md: 45 }} opacity="0.9">
           {daysOfWeek[date.getDay()]}
         </Text>
-        <HStack>
+        <HStack spacing={0}>
           <Image src={IMAGES[day.Day.Icon - 1]} />
           <Text fontSize={{ base: 20, md: 35 }} opacity="0.8">
             {day.Day.IconPhrase}
