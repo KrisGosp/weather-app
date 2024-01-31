@@ -18,21 +18,24 @@ const useCurrentConditions = ({ key }: CityQuery) => {
   const [currentConditions, setCurrentConditions] = useState<CurrentConditions>(
     {} as CurrentConditions
   );
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
   useEffect(() => {
+    setIsLoading(true);
     apiClient
       .get(`/currentconditions/v1/${key}?apikey=${apiKey}`)
       .then((res) => {
         const result = res.data[0];
         setCurrentConditions(result);
-        // console.log(result);
       })
       .catch((err) => {
-        console.log(err);
-      });
+        setError(err.message);
+      })
+      .finally(() => setIsLoading(false));
   }, [key]);
-  return { currentConditions };
+  return { currentConditions, error, isLoading };
 };
 
 export default useCurrentConditions;
