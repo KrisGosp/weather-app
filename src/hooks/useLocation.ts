@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { cityQuery } from "../App";
+import { CityQuery } from "../App";
 
-const useLocation = (city: cityQuery) => {
-  const [location, setLocation] = useState<cityQuery>({
+const useLocation = (city: CityQuery) => {
+  const [location, setLocation] = useState<CityQuery>({
     key: "51097",
     name: "Sofia",
   });
