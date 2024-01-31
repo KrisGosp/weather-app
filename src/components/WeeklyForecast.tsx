@@ -3,13 +3,15 @@ import { FaCalendarAlt } from "react-icons/fa";
 import ForecastDay from "./ForecastDay";
 import useForecast from "../hooks/useForecast";
 import { CityQuery } from "../App";
+import useLocation from "../hooks/useLocation";
 
 type Props = {
   cityQuery: CityQuery;
 };
 
 const WeeklyForecast = ({ cityQuery }: Props) => {
-  const { data: forecasts } = useForecast(cityQuery);
+  const { location } = useLocation(cityQuery);
+  const { data: forecasts } = useForecast(location);
 
   return (
     <>

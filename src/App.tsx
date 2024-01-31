@@ -18,10 +18,7 @@ const App = () => {
   return (
     <>
       <SearchBar onSearch={(name) => setCityQuery({ ...cityQuery, name })} />
-      <Hero
-        cityQuery={cityQuery}
-        updateQuery={(newQuery) => setCityQuery(newQuery)}
-      />
+      <Hero cityQuery={cityQuery} />
       <Box marginTop={28}>
         <WeeklyForecast cityQuery={cityQuery} />
       </Box>
