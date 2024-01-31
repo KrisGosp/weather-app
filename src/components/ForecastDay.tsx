@@ -38,11 +38,10 @@ const ForecastDay = ({ day }: Props) => {
             {day.Day.IconPhrase}
           </Text>
         </HStack>
-        <HStack fontSize={{ base: 38, md: 60 }} spacing={1}>
-          <Text>{FtoC(day.Temperature.Minimum.Value)}</Text>
+        <HStack fontSize={{ base: "30px", md: 60 }} spacing="10px">
+          <Text>L:{FtoC(day.Temperature.Minimum.Value)}°</Text>
 
-          <Text>{"-"}</Text>
-          <Text>{FtoC(day.Temperature.Maximum.Value)}</Text>
+          <Text>H:{FtoC(day.Temperature.Maximum.Value)}°</Text>
         </HStack>
       </HStack>
     </ListItem>
