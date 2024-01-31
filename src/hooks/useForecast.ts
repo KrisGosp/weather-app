@@ -24,9 +24,12 @@ export type Forecast = {
 
 const useForecast = ({ key }: CityQuery) => {
   const [data, setData] = useState<Forecast[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
   useEffect(() => {
+    setIsLoading(true);
     apiClient
       .get(`/forecasts/v1/daily/5day/${key}?apikey=` + apiKey)
       .then((res) => {
@@ -35,11 +38,12 @@ const useForecast = ({ key }: CityQuery) => {
         setData(result);
       })
       .catch((err) => {
-        console.log(err);
-      });
+        setError(err.message);
+      })
+      .finally(() => setIsLoading(false));
   }, [key]);
 
-  return { data };
+  return { data, error, isLoading };
 };
 
 export default useForecast;
