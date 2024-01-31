@@ -1,14 +1,16 @@
 // import { HStack, ListItem, Skeleton, SkeletonText, Text } from "@chakra-ui/react"
 
-import { Skeleton } from "@chakra-ui/react";
+import { ListItem, Skeleton } from "@chakra-ui/react";
 
 const ForecastDaySkeleton = () => {
   return (
-    <Skeleton
-      height="50px"
-      borderBottom="1px solid darkgray"
-      marginTop="10px"
-    />
+    <ListItem>
+      <Skeleton
+        height="50px"
+        borderBottom="1px solid darkgray"
+        marginTop="10px"
+      />
+    </ListItem>
     // <ListItem
     //   borderBottom="1px solid darkgray"
     //   marginTop={10}

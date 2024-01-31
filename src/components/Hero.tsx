@@ -12,7 +12,8 @@ type Props = {
 
 const Hero = ({ cityQuery }: Props) => {
   const { location } = useLocation(cityQuery);
-  const { currentConditions, isLoading } = useCurrentConditions(location);
+  const { currentConditions, isLoading, error } =
+    useCurrentConditions(location);
 
   const nowTime = new Date(currentConditions.LocalObservationDateTime);
   const cutDate = nowTime
@@ -20,6 +21,7 @@ const Hero = ({ cityQuery }: Props) => {
     .slice(0, nowTime.toString().indexOf(" 2024"));
 
   if (isLoading) return <HeroSkeleton />;
+  if (error) return <p>{error}</p>;
   return (
     <Box textAlign="center" marginTop={20}>
       <Heading

@@ -1,4 +1,4 @@
-import { HStack, Heading, List, Icon, Stack } from "@chakra-ui/react";
+import { HStack, Heading, List, Icon } from "@chakra-ui/react";
 import { FaCalendarAlt } from "react-icons/fa";
 import ForecastDay from "./ForecastDay";
 import useForecast from "../hooks/useForecast";
@@ -12,18 +12,20 @@ type Props = {
 
 const WeeklyForecast = ({ cityQuery }: Props) => {
   const { location } = useLocation(cityQuery);
-  const { data: forecasts, isLoading } = useForecast(location);
+  const { data: forecasts, isLoading, error } = useForecast(location);
 
   const skeletons = [1, 2, 3, 4, 5];
 
   if (isLoading)
     return (
-      <Stack>
+      <List marginTop={200}>
         {skeletons.map((sk) => (
           <ForecastDaySkeleton key={sk} />
         ))}
-      </Stack>
+      </List>
     );
+
+  if (error) return null;
 
   return (
     <>
