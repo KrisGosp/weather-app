@@ -26,6 +26,7 @@ const useForecast = ({ key }: CityQuery) => {
   const [data, setData] = useState<Forecast[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
   const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
   useEffect(() => {

@@ -7,9 +7,13 @@ const useLocation = (city: CityQuery) => {
     key: "51097",
     name: "Sofia",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
 
   useEffect(() => {
+    setIsLoading(true);
     apiClient
       .get(
         "/locations/v1/cities/autocomplete?apikey=" + apiKey + "&q=" + city.name
@@ -21,11 +25,12 @@ const useLocation = (city: CityQuery) => {
         // console.log("LocalizedName: " + name, key);
       })
       .catch((err) => {
-        console.log(err);
-      });
+        setError(err.message);
+      })
+      .finally(() => setIsLoading(false));
   }, [city.name]);
 
-  return { location };
+  return { location, error, isLoading };
 };
 
 export default useLocation;
