@@ -10,13 +10,14 @@ const useLocation = (city: CityQuery) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const apiKey = "TpUdCDrA7t6MZK4QCv65u4h1ecFPLHJy";
-
   useEffect(() => {
     setIsLoading(true);
     apiClient
       .get(
-        "/locations/v1/cities/autocomplete?apikey=" + apiKey + "&q=" + city.name
+        "/locations/v1/cities/autocomplete?apikey=" +
+          import.meta.env.VITE_API_KEY +
+          "&q=" +
+          city.name
       )
       .then((res) => {
         const name = res.data[0].LocalizedName;

@@ -10,9 +10,12 @@ type Props = {
   updateQuery: (cityQuery: CityQuery) => void;
 };
 
-const Hero = ({ cityQuery, updateQuery }: Props) => {
+const Hero = ({
+  cityQuery,
+}: // updateQuery
+Props) => {
   const { location } = useLocation(cityQuery);
-  updateQuery(location);
+  // updateQuery(location);
   const { currentConditions } = useCurrentConditions(location);
   const nowTime = new Date(currentConditions.LocalObservationDateTime);
   const cutDate = nowTime
