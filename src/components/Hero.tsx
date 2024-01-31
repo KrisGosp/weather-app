@@ -1,4 +1,4 @@
-import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import useCurrentConditions from "../hooks/useCurrentConditions";
 // import one from "../assets/1-s.png";
 import IMAGES from "../assets";
@@ -23,19 +23,17 @@ const Hero = ({ cityQuery, updateQuery }: Props) => {
     <Box textAlign="center" marginTop={20}>
       <Heading
         as="h1"
-        fontSize={{ base: 70, md: "110px", lg: "130px", xl: "160px" }}
+        fontSize={{ base: 70, md: "90px", lg: "110px", xl: "160px" }}
       >
         {location.name}
       </Heading>
-      <Text
-        opacity="0.6"
-        fontSize={{ base: 17, md: "20px", lg: "25px", xl: "90px" }}
-      >
+      <Text opacity="0.6" fontSize={{ base: 17, md: "20px", xl: "90px" }}>
         {cutDate}
       </Text>
+
       <Heading
         as="h2"
-        fontSize={{ base: 100, md: 160, lg: 220 }}
+        fontSize={{ base: 100, md: 110, lg: 150 }}
         marginTop={5}
         fontWeight="300"
       >
@@ -43,15 +41,21 @@ const Hero = ({ cityQuery, updateQuery }: Props) => {
           currentConditions.Temperature.Metric.Value}
         °
       </Heading>
-      <Box marginY={10} display="flex" justifyContent="space-around">
-        <Image
-          src={IMAGES[currentConditions.WeatherIcon - 1]}
-          width={{ base: 500, md: 700, lg: 800 }}
-        />
-      </Box>
-      <Text fontSize={{ base: "50px", lg: "80px" }} opacity="0.8">
-        {currentConditions.WeatherText}
-      </Text>
+      <HStack
+        marginTop="10px"
+        justifyContent="center"
+        // maxWidth="40%"
+        // marginX="auto"
+        spacing={0}
+        marginRight={{ base: "35px", md: "50px", lg: "70px" }}
+      >
+        <Box>
+          <Image src={IMAGES[currentConditions.WeatherIcon - 1]} />
+        </Box>
+        <Text fontSize={{ base: "20px", lg: "30px" }} opacity="0.8">
+          {currentConditions.WeatherText}
+        </Text>
+      </HStack>
     </Box>
   );
 };
