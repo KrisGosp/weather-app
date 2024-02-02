@@ -14,6 +14,9 @@ const Hero = ({ cityQuery }: Props) => {
   const { currentConditions, isLoading, error } =
     useCurrentConditions(location);
 
+  localStorage.setItem("city", location.name);
+  // localStorage.setItem("key", location.key);
+
   const nowTime = new Date(currentConditions.LocalObservationDateTime);
   const cutDate = nowTime
     .toString()

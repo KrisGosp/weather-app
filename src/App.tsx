@@ -12,7 +12,7 @@ export type CityQuery = {
 const App = () => {
   const [cityQuery, setCityQuery] = useState<CityQuery>({
     key: "51097",
-    name: "Sofia",
+    name: localStorage.getItem("city") || "Sofia",
   });
 
   return (
