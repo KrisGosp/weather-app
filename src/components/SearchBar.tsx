@@ -9,21 +9,21 @@ type Props = {
 const SearchBar = ({ onSearch }: Props) => {
   const onSubmit = (data: FieldValues) => {
     onSearch(data.search);
+    reset();
   };
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <InputGroup width="70%" marginX="auto" marginY={10}>
         <Input
           {...register("search", {
-            required: true,
             minLength: 3,
             maxLength: 40,
           })}
@@ -34,7 +34,10 @@ const SearchBar = ({ onSearch }: Props) => {
         />
         <InputLeftElement as={BiSearchAlt} margin={1} />
       </InputGroup>
-      {errors.search?.type === "required" && <p>The mistake</p>}
+      {errors.search?.type === "minLength" && (
+        <p>Please type at least 3 characters</p>
+      )}
+      {errors.search?.type === "maxLength" && <p>Maximum length exceeded</p>}
     </form>
   );
 };

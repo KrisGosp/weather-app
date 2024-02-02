@@ -32,7 +32,7 @@ const useCurrentConditions = ({ key }: CityQuery) => {
         setCurrentConditions(result);
       })
       .catch((err) => {
-        setError(err.message);
+        setError(err);
       })
       .finally(() => setIsLoading(false));
   }, [key]);
