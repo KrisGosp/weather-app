@@ -1,6 +1,5 @@
 import { Box, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import useCurrentConditions from "../hooks/useCurrentConditions";
-// import one from "../assets/1-s.png";
 import IMAGES from "../assets";
 import useLocation from "../hooks/useLocation";
 import { CityQuery } from "../App";
@@ -47,8 +46,6 @@ const Hero = ({ cityQuery }: Props) => {
       <HStack
         marginTop="10px"
         justifyContent="center"
-        // maxWidth="40%"
-        // marginX="auto"
         spacing={0}
         marginRight={{ base: "35px", md: "50px", lg: "70px" }}
       >

@@ -23,20 +23,18 @@ const useCurrentConditions = ({ key }: CityQuery) => {
 
   useEffect(() => {
     setIsLoading(true);
-    setTimeout(() => {
-      apiClient
-        .get(
-          `/currentconditions/v1/${key}?apikey=${import.meta.env.VITE_API_KEY}`
-        )
-        .then((res) => {
-          const result = res.data[0];
-          setCurrentConditions(result);
-        })
-        .catch((err) => {
-          setError(err.message);
-        })
-        .finally(() => setIsLoading(false));
-    }, 1000);
+    apiClient
+      .get(
+        `/currentconditions/v1/${key}?apikey=${import.meta.env.VITE_API_KEY}`
+      )
+      .then((res) => {
+        const result = res.data[0];
+        setCurrentConditions(result);
+      })
+      .catch((err) => {
+        setError(err.message);
+      })
+      .finally(() => setIsLoading(false));
   }, [key]);
   return { currentConditions, error, isLoading };
 };

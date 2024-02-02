@@ -29,16 +29,23 @@ const ForecastDay = ({ day }: Props) => {
       fontSize={30}
     >
       <HStack justifyContent="space-between" margin={{ base: 2, md: 10 }}>
-        <Text whiteSpace="nowrap" fontSize={{ base: 25, md: 45 }} opacity="0.9">
+        <Text
+          whiteSpace="nowrap"
+          fontSize={{ base: 25, md: 35, lg: 45 }}
+          opacity="0.9"
+        >
           {daysOfWeek[date.getDay()]}
         </Text>
         <HStack spacing={0}>
           <Image src={IMAGES[day.Day.Icon - 1]} />
-          <Text fontSize={{ base: 20, md: 35 }} opacity="0.8">
+          <Text fontSize={{ base: 20, md: 27, lg: 35 }} opacity="0.8">
             {day.Day.IconPhrase}
           </Text>
         </HStack>
-        <HStack fontSize={{ base: "30px", md: 60 }} spacing="10px">
+        <HStack
+          fontSize={{ base: "30px", md: "45px", lg: "60px" }}
+          spacing="10px"
+        >
           <Text>L:{FtoC(day.Temperature.Minimum.Value)}°</Text>
 
           <Text>H:{FtoC(day.Temperature.Maximum.Value)}°</Text>
