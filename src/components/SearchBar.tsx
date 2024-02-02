@@ -8,8 +8,7 @@ type Props = {
 
 const SearchBar = ({ onSearch }: Props) => {
   const onSubmit = (data: FieldValues) => {
-    onSearch(data.searchTerm);
-    console.log(data);
+    onSearch(data.search);
   };
 
   const {
@@ -17,6 +16,7 @@ const SearchBar = ({ onSearch }: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -34,7 +34,7 @@ const SearchBar = ({ onSearch }: Props) => {
         />
         <InputLeftElement as={BiSearchAlt} margin={1} />
       </InputGroup>
-      {/* {errors} */}
+      {errors.search?.type === "required" && <p>The mistake</p>}
     </form>
   );
 };
