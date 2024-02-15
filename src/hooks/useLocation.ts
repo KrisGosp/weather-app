@@ -1,21 +1,24 @@
-import { useEffect, useState } from "react";
 import APIClient from "../services/api-client";
 import { CityQuery } from "../App";
+import { useQuery } from "@tanstack/react-query";
 
 const useLocation = (city: CityQuery) => {
-  const [location, setLocation] = useState<CityQuery>({
-    key: "51097",
-    name: "Sofia",
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  // const [location, setLocation] = useState<CityQuery>({
+  //   key: "51097",
+  //   name: "Sofia",
+  // });
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState("");
 
   const apiClient = new APIClient(
     `/locations/v1/cities/autocomplete?apikey="${
       import.meta.env.VITE_API_KEY
     }&q=${city.name}`
   );
-  useEffect(() => )
+  return useQuery({
+    queryKey: ["location", city.name],
+    queryFn: apiClient.getLocation,
+  });
   //     .get(
   //       "/locations/v1/cities/autocomplete?apikey=" +
   //         import.meta.env.VITE_API_KEY +
@@ -33,7 +36,7 @@ const useLocation = (city: CityQuery) => {
   //     .finally(() => setIsLoading(false));
   // }, [city.name]);
 
-  return { location, error, isLoading };
+  // return { location, error, isLoading };
 };
 
 export default useLocation;
