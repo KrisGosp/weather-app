@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
+import APIClient from "../services/api-client";
 import { CityQuery } from "../App";
 
 const useLocation = (city: CityQuery) => {
@@ -10,25 +10,28 @@ const useLocation = (city: CityQuery) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    setIsLoading(true);
-    apiClient
-      .get(
-        "/locations/v1/cities/autocomplete?apikey=" +
-          import.meta.env.VITE_API_KEY +
-          "&q=" +
-          city.name
-      )
-      .then((res) => {
-        const name = res.data[0].LocalizedName;
-        const key = res.data[0].Key;
-        setLocation({ name, key });
-      })
-      .catch((err) => {
-        setError(err.message);
-      })
-      .finally(() => setIsLoading(false));
-  }, [city.name]);
+  const apiClient = new APIClient(
+    `/locations/v1/cities/autocomplete?apikey="${
+      import.meta.env.VITE_API_KEY
+    }&q=${city.name}`
+  );
+  useEffect(() => )
+  //     .get(
+  //       "/locations/v1/cities/autocomplete?apikey=" +
+  //         import.meta.env.VITE_API_KEY +
+  //         "&q=" +
+  //         city.name
+  //     )
+  //     .then((res) => {
+  //       // const name = res.data[0].LocalizedName;
+  //       const key = res.data[0].Key;
+  //       setLocation({ name, key });
+  //     })
+  //     .catch((err) => {
+  //       setError(err.message);
+  //     })
+  //     .finally(() => setIsLoading(false));
+  // }, [city.name]);
 
   return { location, error, isLoading };
 };
