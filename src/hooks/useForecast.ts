@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
-import { CityQuery } from "../App";
+// import { CityQuery } from "../App";
 import apiClient from "../services/api-client";
+import useLocation from "./useLocation";
+import { CityQuery } from "../App";
+import { useQuery } from "@tanstack/react-query";
 
 export type Forecast = {
   Date: Date;
@@ -22,29 +24,18 @@ export type Forecast = {
 //   data: Forecast[];
 // };
 
-const useForecast = ({ key }: CityQuery) => {
-  const [data, setData] = useState<Forecast[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+const useForecast = (city: CityQuery) => {
+  const { data } = useLocation(city);
 
-  useEffect(() => {
-    setIsLoading(true);
-    apiClient
-      .get(
-        `/forecasts/v1/daily/5day/${key}?apikey=` + import.meta.env.VITE_API_KEY
-      )
-      .then((res) => {
-        console.log(res.data.DailyForecasts[0]);
-        const result = res.data.DailyForecasts;
-        setData(result);
-      })
-      .catch((err) => {
-        setError(err.message);
-      })
-      .finally(() => setIsLoading(false));
-  }, [key]);
-
-  return { data, error, isLoading };
+  return useQuery<Forecast[], Error>({
+    queryKey: ["forecast"],
+    queryFn: () =>
+      apiClient
+        .get(
+          `/forecasts/v1/daily/5day/${data.key}?apikey=` +
+            import.meta.env.VITE_API_KEY
+        )
+        .then((res) => res.data.DailyForecasts),
+  });
 };
-
 export default useForecast;

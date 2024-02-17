@@ -5,13 +5,13 @@ import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 
 export type CityQuery = {
-  key: string;
+  key: number;
   name: string;
 };
 
 const App = () => {
   const [cityQuery, setCityQuery] = useState<CityQuery>({
-    key: "51097",
+    key: 51097,
     name: localStorage.getItem("city") || "Sofia",
   });
 
