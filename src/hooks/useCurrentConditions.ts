@@ -19,7 +19,7 @@ export type CurrentConditions = {
 const useCurrentConditions = (city: CityQuery) => {
   const { data } = useLocation(city);
 
-  return useQuery({
+  return useQuery<CurrentConditions, Error>({
     queryKey: ["currentConditions"],
     queryFn: () =>
       apiClient
