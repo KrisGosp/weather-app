@@ -8,23 +8,21 @@ type FetchResponse = {
 };
 
 const useLocation = (city: CityQuery) => {
-  return useQuery<FetchResponse[], Error>({
+  return useQuery<FetchResponse, Error>({
     queryKey: ["location"],
     queryFn: () =>
       apiClient
-        .get(
+        .get<FetchResponse[]>(
           "/locations/v1/cities/autocomplete?apikey=" +
             import.meta.env.VITE_API_KEY +
             "&q=" +
             city.name
         )
         .then((res) => res.data[0]),
-    initialData: [
-      {
-        Key: "51097",
-        LocalizedName: "Sofia",
-      },
-    ],
+    initialData: {
+      Key: "51097",
+      LocalizedName: "Sofia",
+    },
   });
 };
 
