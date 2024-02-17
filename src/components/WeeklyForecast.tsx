@@ -23,7 +23,7 @@ const WeeklyForecast = ({ cityQuery }: Props) => {
       </List>
     );
 
-  if (error) return null;
+  if (error?.message) return null;
 
   return (
     <>
@@ -38,7 +38,7 @@ const WeeklyForecast = ({ cityQuery }: Props) => {
         </Heading>
       </HStack>
       <List>
-        {forecasts.map((day) => (
+        {forecasts?.map((day) => (
           <ForecastDay key={day.EpochDate} day={day} />
         ))}
       </List>

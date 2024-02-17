@@ -2,8 +2,13 @@ import apiClient from "../services/api-client";
 import { CityQuery } from "../App";
 import { useQuery } from "@tanstack/react-query";
 
-const useLocation = (city: CityQuery) =>
-  useQuery<CityQuery, Error>({
+type FetchResponse = {
+  Key: string;
+  LocalizedName: string;
+};
+
+const useLocation = (city: CityQuery) => {
+  return useQuery<FetchResponse[], Error>({
     queryKey: ["location"],
     queryFn: () =>
       apiClient
@@ -14,10 +19,13 @@ const useLocation = (city: CityQuery) =>
             city.name
         )
         .then((res) => res.data[0]),
-    initialData: {
-      key: 51097,
-      name: "Sofia",
-    },
+    initialData: [
+      {
+        Key: "51097",
+        LocalizedName: "Sofia",
+      },
+    ],
   });
+};
 
 export default useLocation;

@@ -26,13 +26,13 @@ export type Forecast = {
 
 const useForecast = (city: CityQuery) => {
   const { data } = useLocation(city);
-
+  console.log("dataa" + data.Key);
   return useQuery<Forecast[], Error>({
     queryKey: ["forecast"],
     queryFn: () =>
       apiClient
         .get(
-          `/forecasts/v1/daily/5day/${data.key}?apikey=` +
+          `/forecasts/v1/daily/5day/${parseInt(data.Key)}?apikey=` +
             import.meta.env.VITE_API_KEY
         )
         .then((res) => res.data.DailyForecasts),
