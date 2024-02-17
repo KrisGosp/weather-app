@@ -2,14 +2,11 @@ import { HStack, Heading, List, Icon } from "@chakra-ui/react";
 import { FaCalendarAlt } from "react-icons/fa";
 import ForecastDay from "./ForecastDay";
 import useForecast from "../hooks/useForecast";
-import { CityQuery } from "../App";
 import ForecastDaySkeleton from "./ForecastDaySkeleton";
+import useCityQueryStore from "../store";
 
-type Props = {
-  cityQuery: CityQuery;
-};
-
-const WeeklyForecast = ({ cityQuery }: Props) => {
+const WeeklyForecast = () => {
+  const { cityQuery } = useCityQueryStore();
   const { data: forecasts, isLoading, error } = useForecast(cityQuery);
 
   const skeletons = [1, 2, 3, 4, 5];

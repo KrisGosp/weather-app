@@ -1,14 +1,12 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { BiSearchAlt } from "react-icons/bi";
 import { FieldValues, useForm } from "react-hook-form";
+import useCityQueryStore from "../store";
 
-type Props = {
-  onSearch: (searchTerm: string) => void;
-};
-
-const SearchBar = ({ onSearch }: Props) => {
+const SearchBar = () => {
+  const { updateName } = useCityQueryStore();
   const onSubmit = (data: FieldValues) => {
-    onSearch(data.search);
+    updateName(data.search);
     reset();
   };
 

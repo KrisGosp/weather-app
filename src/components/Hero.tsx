@@ -1,14 +1,11 @@
 import { Box, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import useCurrentConditions from "../hooks/useCurrentConditions";
 import IMAGES from "../assets";
-import { CityQuery } from "../App";
 import HeroSkeleton from "./HeroSkeleton";
+import useCityQueryStore from "../store";
 
-type Props = {
-  cityQuery: CityQuery;
-};
-
-const Hero = ({ cityQuery }: Props) => {
+const Hero = () => {
+  const { cityQuery } = useCityQueryStore();
   const {
     data: currentConditions,
     isLoading,

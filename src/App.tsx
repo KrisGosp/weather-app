@@ -1,8 +1,7 @@
 import { Box } from "@chakra-ui/react";
-// import Hero from "./components/Hero";
+import Hero from "./components/Hero";
 import WeeklyForecast from "./components/WeeklyForecast";
 import SearchBar from "./components/SearchBar";
-import { useState } from "react";
 
 export type CityQuery = {
   key: string;
@@ -10,17 +9,12 @@ export type CityQuery = {
 };
 
 const App = () => {
-  const [cityQuery, setCityQuery] = useState<CityQuery>({
-    key: "51097",
-    name: localStorage.getItem("city") || "Sofia",
-  });
-
   return (
     <>
-      <SearchBar onSearch={(name) => setCityQuery({ ...cityQuery, name })} />
-      {/* <Hero cityQuery={cityQuery} /> */}
+      <SearchBar />
+      <Hero />
       <Box marginTop={28}>
-        <WeeklyForecast cityQuery={cityQuery} />
+        <WeeklyForecast />
       </Box>
     </>
   );
