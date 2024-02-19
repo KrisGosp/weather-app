@@ -12,7 +12,8 @@ type Props = {
 
 const WeeklyForecast = ({ cityQuery }: Props) => {
   const { data: location } = useLocation(cityQuery);
-  const { data: forecasts, isLoading, error } = useForecast(location);
+  console.log("location", location);
+  const { data: forecasts, isLoading, error } = useForecast(location!);
 
   const skeletons = [1, 2, 3, 4, 5];
 

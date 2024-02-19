@@ -5,19 +5,23 @@ import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 
 export type CityQuery = {
-  key: string;
-  name: string;
+  Key: string;
+  LocalizedName: string;
 };
 
 const App = () => {
   const [cityQuery, setCityQuery] = useState<CityQuery>({
-    key: "51097",
-    name: localStorage.getItem("city") || "Sofia",
+    Key: "51097",
+    LocalizedName: localStorage.getItem("city") || "Sofia",
   });
 
   return (
     <>
-      <SearchBar onSearch={(name) => setCityQuery({ ...cityQuery, name })} />
+      <SearchBar
+        onSearch={(LocalizedName) =>
+          setCityQuery({ ...cityQuery, LocalizedName })
+        }
+      />
       <Hero cityQuery={cityQuery} />
       <Box marginTop={28}>
         <WeeklyForecast cityQuery={cityQuery} />

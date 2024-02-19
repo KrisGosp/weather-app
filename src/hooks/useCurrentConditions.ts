@@ -14,7 +14,7 @@ export type CurrentConditions = {
   WeatherText: string;
 };
 
-const useCurrentConditions = ({ key }: CityQuery) => {
+const useCurrentConditions = ({ Key }: CityQuery) => {
   const [currentConditions, setCurrentConditions] = useState<CurrentConditions>(
     {} as CurrentConditions
   );
@@ -25,7 +25,7 @@ const useCurrentConditions = ({ key }: CityQuery) => {
     setIsLoading(true);
     apiClient
       .get(
-        `/currentconditions/v1/${key}?apikey=${import.meta.env.VITE_API_KEY}`
+        `/currentconditions/v1/${Key}?apikey=${import.meta.env.VITE_API_KEY}`
       )
       .then((res) => {
         const result = res.data[0];
@@ -35,7 +35,7 @@ const useCurrentConditions = ({ key }: CityQuery) => {
         setError(err);
       })
       .finally(() => setIsLoading(false));
-  }, [key]);
+  }, []);
   return { currentConditions, error, isLoading };
 };
 
