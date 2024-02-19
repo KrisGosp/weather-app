@@ -2,17 +2,12 @@ import { HStack, Heading, List, Icon } from "@chakra-ui/react";
 import { FaCalendarAlt } from "react-icons/fa";
 import ForecastDay from "./ForecastDay";
 import useForecast from "../hooks/useForecast";
-import { CityQuery } from "../App";
-import useLocation from "../hooks/useLocation";
 import ForecastDaySkeleton from "./ForecastDaySkeleton";
+import useCityQueryStore from "../store";
 
-type Props = {
-  cityQuery: CityQuery;
-};
-
-const WeeklyForecast = ({ cityQuery }: Props) => {
-  const { location } = useLocation(cityQuery);
-  const { data: forecasts, isLoading, error } = useForecast(location);
+const WeeklyForecast = () => {
+  const { cityQuery } = useCityQueryStore();
+  const { data: forecasts, isLoading, error } = useForecast(cityQuery);
 
   const skeletons = [1, 2, 3, 4, 5];
 
@@ -25,7 +20,7 @@ const WeeklyForecast = ({ cityQuery }: Props) => {
       </List>
     );
 
-  if (error) return null;
+  if (error?.message) return null;
 
   return (
     <>
@@ -40,7 +35,7 @@ const WeeklyForecast = ({ cityQuery }: Props) => {
         </Heading>
       </HStack>
       <List>
-        {forecasts.map((day) => (
+        {forecasts?.map((day) => (
           <ForecastDay key={day.EpochDate} day={day} />
         ))}
       </List>

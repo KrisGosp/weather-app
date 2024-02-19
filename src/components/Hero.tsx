@@ -1,41 +1,35 @@
 import { Box, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import useCurrentConditions from "../hooks/useCurrentConditions";
 import IMAGES from "../assets";
-import useLocation from "../hooks/useLocation";
-import { CityQuery } from "../App";
 import HeroSkeleton from "./HeroSkeleton";
+import useCityQueryStore from "../store";
 
-type Props = {
-  cityQuery: CityQuery;
-};
-
-const Hero = ({ cityQuery }: Props) => {
-  const { location } = useLocation(cityQuery);
-  const { currentConditions, isLoading, error } =
-    useCurrentConditions(location);
-
-  localStorage.setItem("city", location.name);
+const Hero = () => {
+  const { cityQuery } = useCityQueryStore();
+  const {
+    data: currentConditions,
+    isLoading,
+    error,
+  } = useCurrentConditions(cityQuery);
+  // localStorage.setItem("city", location.LocalizedName);
   // localStorage.setItem("key", location.key);
-
-  const nowTime = new Date(currentConditions.LocalObservationDateTime);
+  const nowTime = new Date(currentConditions!.LocalObservationDateTime);
   const cutDate = nowTime
     .toString()
     .slice(0, nowTime.toString().indexOf(" 2024"));
-
   if (isLoading) return <HeroSkeleton />;
-  if (error) return <p>{error}</p>;
+  if (error) return <p>{error.message}</p>;
   return (
     <Box textAlign="center" marginTop={20}>
       <Heading
         as="h1"
         fontSize={{ base: 70, md: "90px", lg: "110px", xl: "160px" }}
       >
-        {location.name}
+        --Sofia--
       </Heading>
       <Text opacity="0.6" fontSize={{ base: 17, md: "20px", xl: "90px" }}>
         {cutDate}
       </Text>
-
       <Heading
         as="h2"
         fontSize={{ base: 100, md: 110, lg: 150 }}
