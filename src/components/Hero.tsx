@@ -1,13 +1,13 @@
 import { Box, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import useCurrentConditions from "../hooks/useCurrentConditions";
 import IMAGES from "../assets";
+import HeroSkeleton from "./HeroSkeleton";
 import useLocation from "../hooks/useLocation";
 import { CityQuery } from "../App";
-import HeroSkeleton from "./HeroSkeleton";
 
-type Props = {
+interface Props {
   cityQuery: CityQuery;
-};
+}
 
 const Hero = ({ cityQuery }: Props) => {
   const { data: location } = useLocation(cityQuery);
@@ -24,7 +24,7 @@ const Hero = ({ cityQuery }: Props) => {
   //   .slice(0, nowTime.toString().indexOf(" 2024"));
 
   if (isLoading) return <HeroSkeleton />;
-  if (error) return <p>{error}</p>;
+  if (error) return <p>{error.message}</p>;
   return (
     <Box textAlign="center" marginTop={20}>
       <Heading
@@ -36,7 +36,6 @@ const Hero = ({ cityQuery }: Props) => {
       <Text opacity="0.6" fontSize={{ base: 17, md: "20px", xl: "90px" }}>
         {/* {cutDate} */}
       </Text>
-
       <Heading
         as="h2"
         fontSize={{ base: 100, md: 110, lg: 150 }}

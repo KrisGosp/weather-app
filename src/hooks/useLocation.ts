@@ -1,5 +1,3 @@
-// import { useEffect, useState } from "react";
-// import apiClient from "../services/api-client";
 import { useQuery } from "@tanstack/react-query";
 import { CityQuery } from "../App";
 import apiClient from "../services/api-client";
@@ -23,21 +21,4 @@ const useLocation = (city: CityQuery) =>
     },
   });
 
-// const [location, setLocation] = useState<CityQuery>({
-//   key: "51097",
-//   name: "Sofia",
-// });
-// const [isLoading, setIsLoading] = useState(false);
-// const [error, setError] = useState("");
-
-// useEffect(() => {
-//   setIsLoading(true);
-//
-//     .catch((err) => {
-//       setError(err.message);
-//     })
-//     .finally(() => setIsLoading(false));
-// }, [city.name]);
-
-// return { location, error, isLoading };
 export default useLocation;
