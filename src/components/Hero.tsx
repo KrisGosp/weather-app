@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Hero = ({ cityQuery }: Props) => {
-  const { location } = useLocation(cityQuery);
+  const { data: location } = useLocation(cityQuery);
   const { currentConditions, isLoading, error } =
     useCurrentConditions(location);
 
