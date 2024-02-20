@@ -18,9 +18,6 @@ export type Forecast = {
     IconPhrase: string;
   };
 };
-// type FetchResponse = {
-//   data: Forecast[];
-// };
 
 const useForecast = ({ Key }: CityQuery) =>
   useQuery<Forecast[], Error>({
@@ -33,27 +30,5 @@ const useForecast = ({ Key }: CityQuery) =>
         )
         .then((res) => res.data.DailyForecasts),
   });
-// const [data, setData] = useState<Forecast[]>([]);
-// const [isLoading, setIsLoading] = useState(false);
-// const [error, setError] = useState("");
-
-// useEffect(() => {
-//   setIsLoading(true);
-//   apiClient
-//     .get(
-//       `/forecasts/v1/daily/5day/${key}?apikey=` + import.meta.env.VITE_API_KEY
-//     )
-//     .then((res) => {
-//       console.log(res.data.DailyForecasts[0]);
-//       const result = res.data.DailyForecasts;
-//       setData(result);
-//     })
-//     .catch((err) => {
-//       setError(err.message);
-//     })
-//     .finally(() => setIsLoading(false));
-// }, [key]);
-
-// return { data, error, isLoading };
 
 export default useForecast;

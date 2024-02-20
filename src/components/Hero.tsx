@@ -11,17 +11,20 @@ interface Props {
 
 const Hero = ({ cityQuery }: Props) => {
   const { data: location } = useLocation(cityQuery);
-  const { currentConditions, isLoading, error } = useCurrentConditions(
-    location!
-  );
+  const {
+    data: currentConditions,
+    isLoading,
+    error,
+  } = useCurrentConditions(location!);
 
   localStorage.setItem("city", location!.LocalizedName);
-  // localStorage.setItem("key", location.key);
 
-  // const nowTime = new Date(currentConditions.LocalObservationDateTime);
-  // const cutDate = nowTime
-  //   .toString()
-  //   .slice(0, nowTime.toString().indexOf(" 2024"));
+  const nowTime = new Date(
+    currentConditions?.LocalObservationDateTime || Date.now()
+  );
+  const cutDate = nowTime
+    .toString()
+    .slice(0, nowTime.toString().indexOf(" 2024"));
 
   if (isLoading) return <HeroSkeleton />;
   if (error) return <p>{error.message}</p>;
@@ -34,7 +37,7 @@ const Hero = ({ cityQuery }: Props) => {
         {location!.LocalizedName}
       </Heading>
       <Text opacity="0.6" fontSize={{ base: 17, md: "20px", xl: "90px" }}>
-        {/* {cutDate} */}
+        {cutDate}
       </Text>
       <Heading
         as="h2"
