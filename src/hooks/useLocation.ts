@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { CityQuery } from "../App";
 import apiClient from "../services/api-client";
+import ms from "ms";
+
+export type CityQuery = {
+  Key: string;
+  LocalizedName: string;
+};
 
 const useLocation = (name: string) =>
   useQuery<CityQuery, Error>({
@@ -14,7 +19,7 @@ const useLocation = (name: string) =>
             name
         )
         .then((res) => res.data[0]),
-    staleTime: 1000 * 60 * 60 * 24,
+    staleTime: ms("24h"),
     placeholderData: {
       Key: "51097",
       LocalizedName: "Sofia",

@@ -2,6 +2,7 @@ import apiClient from "../services/api-client";
 import { useQuery } from "@tanstack/react-query";
 import useCityQueryStore from "../store";
 import useLocation from "./useLocation";
+import ms from "ms";
 
 export type Forecast = {
   Date: Date;
@@ -32,6 +33,7 @@ const useForecast = () => {
             import.meta.env.VITE_API_KEY
         )
         .then((res) => res.data.DailyForecasts),
+    staleTime: ms("24h"),
   });
 };
 

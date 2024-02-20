@@ -3,11 +3,6 @@ import Hero from "./components/Hero";
 import WeeklyForecast from "./components/WeeklyForecast";
 import SearchBar from "./components/SearchBar";
 
-export type CityQuery = {
-  Key: string;
-  LocalizedName: string;
-};
-
 const App = () => {
   return (
     <>
