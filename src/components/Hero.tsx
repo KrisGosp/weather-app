@@ -3,14 +3,11 @@ import useCurrentConditions from "../hooks/useCurrentConditions";
 import IMAGES from "../assets";
 import HeroSkeleton from "./HeroSkeleton";
 import useLocation from "../hooks/useLocation";
-import { CityQuery } from "../App";
+import useCityQueryStore from "../store";
 
-interface Props {
-  cityQuery: CityQuery;
-}
-
-const Hero = ({ cityQuery }: Props) => {
-  const { data: location } = useLocation(cityQuery.LocalizedName);
+const Hero = () => {
+  const { name } = useCityQueryStore();
+  const { data: location } = useLocation(name);
   const {
     data: currentConditions,
     isLoading,

@@ -4,17 +4,12 @@ import ForecastDay from "./ForecastDay";
 import useForecast from "../hooks/useForecast";
 import ForecastDaySkeleton from "./ForecastDaySkeleton";
 import useLocation from "../hooks/useLocation";
-import { CityQuery } from "../App";
 import useCityQueryStore from "../store";
 
-interface Props {
-  cityQuery: CityQuery;
-}
-
-const WeeklyForecast = ({ cityQuery }: Props) => {
+const WeeklyForecast = () => {
   const { name } = useCityQueryStore();
   const { data: location } = useLocation(name);
-  console.log("location", location, "::::", cityQuery);
+  console.log("location", location, "::::");
   const { data: forecasts, isLoading, error } = useForecast(location!);
 
   const skeletons = [1, 2, 3, 4, 5];

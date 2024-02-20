@@ -22,9 +22,9 @@ const App = () => {
           setCityQuery({ ...cityQuery, LocalizedName })
         }
       />
-      <Hero cityQuery={cityQuery} />
+      <Hero />
       <Box marginTop={28}>
-        <WeeklyForecast cityQuery={cityQuery} />
+        <WeeklyForecast />
       </Box>
     </>
   );
