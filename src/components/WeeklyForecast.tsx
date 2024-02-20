@@ -3,14 +3,11 @@ import { FaCalendarAlt } from "react-icons/fa";
 import ForecastDay from "./ForecastDay";
 import useForecast from "../hooks/useForecast";
 import ForecastDaySkeleton from "./ForecastDaySkeleton";
-import useLocation from "../hooks/useLocation";
-import useCityQueryStore from "../store";
+// import useLocation from "../hooks/useLocation";
+// import useCityQueryStore from "../store";
 
 const WeeklyForecast = () => {
-  const { name } = useCityQueryStore();
-  const { data: location } = useLocation(name);
-  console.log("location", location, "::::");
-  const { data: forecasts, isLoading, error } = useForecast(location!);
+  const { data: forecasts, isLoading, error } = useForecast();
 
   const skeletons = [1, 2, 3, 4, 5];
 

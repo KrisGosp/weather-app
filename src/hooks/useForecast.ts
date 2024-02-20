@@ -1,6 +1,7 @@
-import { CityQuery } from "../App";
 import apiClient from "../services/api-client";
 import { useQuery } from "@tanstack/react-query";
+import useCityQueryStore from "../store";
+import useLocation from "./useLocation";
 
 export type Forecast = {
   Date: Date;
@@ -19,16 +20,19 @@ export type Forecast = {
   };
 };
 
-const useForecast = ({ Key }: CityQuery) =>
-  useQuery<Forecast[], Error>({
-    queryKey: ["forecast", Key],
+const useForecast = () => {
+  const { name } = useCityQueryStore();
+  const { data } = useLocation(name);
+  return useQuery<Forecast[], Error>({
+    queryKey: ["forecast", data?.Key],
     queryFn: () =>
       apiClient
         .get(
-          `/forecasts/v1/daily/5day/${Key}?apikey=` +
+          `/forecasts/v1/daily/5day/${data?.Key}?apikey=` +
             import.meta.env.VITE_API_KEY
         )
         .then((res) => res.data.DailyForecasts),
   });
+};
 
 export default useForecast;
