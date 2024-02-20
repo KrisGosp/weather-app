@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Hero = ({ cityQuery }: Props) => {
-  const { data: location } = useLocation(cityQuery);
+  const { data: location } = useLocation(cityQuery.LocalizedName);
   const {
     data: currentConditions,
     isLoading,

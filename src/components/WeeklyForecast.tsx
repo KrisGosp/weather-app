@@ -13,7 +13,7 @@ interface Props {
 
 const WeeklyForecast = ({ cityQuery }: Props) => {
   const { name } = useCityQueryStore();
-  const { data: location } = useLocation({ Key: "", LocalizedName: name });
+  const { data: location } = useLocation(name);
   console.log("location", location, "::::", cityQuery);
   const { data: forecasts, isLoading, error } = useForecast(location!);
 
